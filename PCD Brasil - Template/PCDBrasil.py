@@ -7,6 +7,12 @@ class Observer():
        print(f"Alerta {self.nome}: as condições foram alteradas, verifique o pcd {id} para mais informações.")
 
 class PCD():
+    """"
+        Quando há uma mudança, todas as universidades cadastradas como Observers são avisadas.
+        Assim, os Observers não controlam o fluxo, ou seja, não ficam verificando se houve mudança,
+        mas são notificados pelo PCD quando uma alteração acontece. Desta forma, temos a inversão de 
+        controle, o Sujeito controla.
+    """
     def __init__(self):
         self.id = 0
         self.universidades = [] 
@@ -18,6 +24,8 @@ class PCD():
     def setId(self, id: int):
         self.id = id
      
+     #Aqui é a principal ponto da inversão de controle, aqui ele identifica quais observers serão notificados,
+     #ao invés de esses observers ficarem consultando o PCD, o PDC avisará eles em caso de mudança
     def addUniversidade(self, universidade: Observer):
         self.universidades.append(universidade) 
     
